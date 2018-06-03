@@ -27,7 +27,6 @@ def startDownload():
     if not _readPlaylist():
         print("Nothing to download.")
         return False
-    subprocess.run("screen -D -R -S cron-playlist", shell=True, check=True)
 
     shell_command_builder = ""
     shell_command_builder += 'cd "'+PLAYLIST_DOWNLOAD_DIR+'" && \n'
@@ -37,7 +36,7 @@ def startDownload():
         shell_command_builder += playlist_cmd
     shell_command_builder = shell_command_builder[:-4]
     print(shell_command_builder)
-    subprocess.run(shell_command_builder, shell=True, check=True)
+    subprocess.run("screen -D -R -S cron-playlist "+ shell_command_builder, shell=True, check=True)
 
 def addToPlaylist(urls=[]):
     for url in urls:
