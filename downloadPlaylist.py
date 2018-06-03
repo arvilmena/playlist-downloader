@@ -6,7 +6,7 @@ import subprocess
 PLAYLIST_FILE = "playlist.txt"
 YOUTUBE_PLAYLIST_REGEX = re.compile("[&|\?]list=([a-zA-Z0-9_-]+)")
 PLAYLIST_DOWNLOAD_DIR = "/var/www/html/downloads/pl"
-YOUTUBE_DL_COMMAND = "youtube-dl --download-archive downloaded.txt --no-post-overwrites -c -i -o '%(playlist_uploader)s-%(playlist_title)s/%(upload_date)s-%(playlist_index)s-%(title)s-%(id)s.%(ext)s' --restrict-filenames -f 22/18"
+YOUTUBE_DL_COMMAND = "youtube-dl --download-archive downloaded.txt --no-post-overwrites -c -i -o '%(playlist_uploader)s-%(playlist_title)s/%(upload_date)s-%(title)s-%(id)s.%(ext)s' --restrict-filenames -f 22/18"
 
 
 def app():
