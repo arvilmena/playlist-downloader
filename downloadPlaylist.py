@@ -1,3 +1,6 @@
+#!/home/ziriusph/anaconda3/bin/python
+# -*- coding: utf-8 -*-
+
 import argparse
 import re
 import codecs
@@ -36,7 +39,7 @@ def startDownload():
         shell_command_builder += playlist_cmd
     shell_command_builder = shell_command_builder[:-4]
     print(shell_command_builder)
-    subprocess.run("screen -D -R -S cron-playlist "+ shell_command_builder, shell=True, check=True)
+    subprocess.run(shell_command_builder, shell=True, check=True)
 
 def addToPlaylist(urls=[]):
     for url in urls:
