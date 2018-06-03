@@ -1,6 +1,7 @@
 import argparse
 import re
 import codecs
+import subprocess
 
 PLAYLIST_FILE = "playlist.txt"
 YOUTUBE_PLAYLIST_REGEX = re.compile("[&|\?]list=([a-zA-Z0-9_-]+)")
@@ -33,6 +34,7 @@ def startDownload():
         playlist_cmd += YOUTUBE_DL_COMMAND + " " + "\""+u+"\" && \n"
         shell_command_builder += playlist_cmd
     print(shell_command_builder)
+    subprocess.run(shell_command_builder, shell=True, check=True)
 
 def addToPlaylist(urls=[]):
     for url in urls:
