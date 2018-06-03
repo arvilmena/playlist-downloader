@@ -33,6 +33,7 @@ def startDownload():
         playlist_cmd = " "
         playlist_cmd += YOUTUBE_DL_COMMAND + " " + "\""+u+"\" && \n"
         shell_command_builder += playlist_cmd
+    shell_command_builder = shell_command_builder[:-4]
     print(shell_command_builder)
     subprocess.run(shell_command_builder, shell=True, check=True)
 
