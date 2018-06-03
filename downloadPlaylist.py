@@ -34,9 +34,10 @@ def startDownload():
     shell_command_builder = ""
     shell_command_builder += 'cd "'+PLAYLIST_DOWNLOAD_DIR+'" && \n'
     for u in _readPlaylist():
-        playlist_cmd = " "
-        playlist_cmd += YOUTUBE_DL_COMMAND + " " + "\""+u+"\" && \n"
-        shell_command_builder += playlist_cmd
+        if len(u.strip()) > 0:
+            playlist_cmd = " "
+            playlist_cmd += YOUTUBE_DL_COMMAND + " " + "\""+u+"\" && \n"
+            shell_command_builder += playlist_cmd
     shell_command_builder = shell_command_builder[:-4]
     print(shell_command_builder)
     subprocess.run(shell_command_builder, shell=True, check=True)
