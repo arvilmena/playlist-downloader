@@ -5,11 +5,12 @@ import argparse
 import re
 import codecs
 import subprocess
+import os
 
-PLAYLIST_FILE = "playlist.txt"
+PLAYLIST_FILE = os.path.dirname(os.path.abspath(__file__)) + "/playlist.txt"
 YOUTUBE_PLAYLIST_REGEX = re.compile("[&|\?]list=([a-zA-Z0-9_-]+)")
 PLAYLIST_DOWNLOAD_DIR = "/var/www/html/downloads/pl"
-YOUTUBE_DL_COMMAND = "youtube-dl --download-archive downloaded.txt --no-post-overwrites -c -i -o '%(playlist_uploader)s-%(playlist_title)s/%(upload_date)s-%(title)s--id=%(id)s.%(ext)s' --restrict-filenames -f 22/18"
+YOUTUBE_DL_COMMAND = "youtube-dl --download-archive downloaded.txt --no-post-overwrites -c -i -o '%(playlist_uploader)s-%(playlist_title)s/%(upload_date)s-%(title)s--id=%(id)s.%(ext)s' --restrict-filenames -f 22/18 --dump-single-json --skip-download"
 
 
 def app():
