@@ -10,7 +10,7 @@ import os
 PLAYLIST_FILE = os.path.dirname(os.path.abspath(__file__)) + "/playlist.txt"
 YOUTUBE_PLAYLIST_REGEX = re.compile("[&|\?]list=([a-zA-Z0-9_-]+)")
 PLAYLIST_DOWNLOAD_DIR = "/var/www/html/downloads/pl"
-YOUTUBE_DL_COMMAND = "/usr/local/bin/youtube-dl --download-archive downloaded.txt --no-post-overwrites -c -i -o '%(playlist_uploader)s-%(playlist_title)s/%(upload_date)s-%(title)s--id=%(id)s.%(ext)s' --restrict-filenames -f 22/18"
+YOUTUBE_DL_COMMAND =  "cd " + PLAYLIST_DOWNLOAD_DIR + " && /usr/local/bin/youtube-dl --verbose -i --download-archive downloaded.txt --no-post-overwrites -c -o '%(playlist_uploader)s-%(playlist_title)s/%(upload_date)s-%(title)s--id=%(id)s.%(ext)s' --restrict-filenames -f 22/18 "
 
 
 def app():
@@ -32,16 +32,11 @@ def startDownload():
         print("Nothing to download.")
         return False
 
-    shell_command_builder = ""
-    shell_command_builder += 'cd "'+PLAYLIST_DOWNLOAD_DIR+'" && \n'
     for u in _readPlaylist():
         if len(u.strip()) > 0:
-            playlist_cmd = " "
-            playlist_cmd += YOUTUBE_DL_COMMAND + " " + "\""+u+"\" && \n"
-            shell_command_builder += playlist_cmd
-    shell_command_builder = shell_command_builder[:-4]
-    print(shell_command_builder)
-    subprocess.run(shell_command_builder, shell=True, check=True)
+            playlist_cmd = YOUTUBE_DL_COMMAND + " " + "\""+u+"\""
+            print(playlist_cmd)
+            subprocess.run(playlist_cmd, shell=True, check=True)
 
 def addToPlaylist(urls=[]):
     for url in urls:
