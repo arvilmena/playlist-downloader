@@ -36,7 +36,7 @@ def startDownload():
         if len(u.strip()) > 0:
             playlist_cmd = YOUTUBE_DL_COMMAND + " " + "\""+u+"\""
             print(playlist_cmd)
-            subprocess.run(playlist_cmd, shell=True, check=True)
+            subprocess.run(playlist_cmd, shell=True, check=False)
 
 def addToPlaylist(urls=[]):
     for url in urls:
