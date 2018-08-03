@@ -37,7 +37,7 @@ def startDownload():
             playlist_cmd = YOUTUBE_DL_COMMAND + " " + u
             print(playlist_cmd)
             try:
-                subprocess.run(shell_command_builder, shell=True, check=False)
+                subprocess.run(playlist_cmd, shell=True, check=False)
             except:
                 raise
 
