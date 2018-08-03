@@ -38,8 +38,8 @@ def startDownload():
             print(playlist_cmd)
             try:
                 subprocess.run(shell_command_builder, shell=True, check=False)
-            except Exception, e:
-                print(e)
+            except:
+                raise
 
 def addToPlaylist(urls=[]):
     for url in urls:
